@@ -15,7 +15,7 @@ $(function() {
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
-
+  var $loggedinPage = $('.loggedin.page');
   // Prompt for setting a username
   var username;
   var connected = false;
@@ -28,9 +28,9 @@ $(function() {
   function addParticipantsMessage (data) {
     var message = '';
     if (data.numUsers === 1) {
-      message += "there's 1 participant";
+      message += "(there is 1 participant)";
     } else {
-      message += "there are " + data.numUsers + " participants";
+      message += "(there are " + data.numUsers + " participants)";
     }
     log(message);
   }
@@ -42,7 +42,8 @@ $(function() {
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
-      $chatPage.show();
+      //$loggedinPage.show();
+     $chatPage.show();
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
@@ -229,7 +230,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    var message = "Welcome to Dropbox Chat";
     log(message, {
       prepend: true
     });
